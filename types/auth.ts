@@ -1,16 +1,26 @@
-export type UserRole = "admin" | "groupLeader"
+// types/next-auth.d.ts
+import NextAuth from "next-auth"
 
-export interface User {
-  id: string
-  name: string
-  email: string
-  image?: string
-  role?: UserRole
-  groupId?: number
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string
+      name: string
+      email: string
+      image?: string
+      role?: "admin" | "groupLeader"
+      groupId?: number
+    }
+  }
+
+  interface User {
+    id: string
+    name: string
+    email: string
+    image?: string
+    role?: "admin" | "groupLeader"
+    groupId?: number
+  }
 }
 
-export interface Session {
-  user: User
-  expires: string
-}
 
